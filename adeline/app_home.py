@@ -15,6 +15,7 @@ async def create_event_blocks(context, next):
     context["event_blocks"] = event_blocks
     await next()
 
+
 async def update_home_tab(context, client, event, logger):
     try:
         await client.views_publish(

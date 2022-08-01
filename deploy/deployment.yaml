@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adeline
+  namespace: adeline
+spec:
+  selector:
+    matchLabels:
+      app: adeline
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: adeline
+    spec:
+      containers:
+      - name: adeline
+        image: ghcr.io/andrewkreuzer/adeline:main-239ee8e0-2612519654 # {"$imagepolicy": "flux-system:adeline"}
+
+        ports:
+        - containerPort: 3000
+        env:
+          - name: SLACK_APP_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: slack
+                key: app-token
+          - name: SLACK_BOT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: slack
+                key: bot-token
+          - name: SLACK_SIGNING_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: slack
+                key: signing-secret

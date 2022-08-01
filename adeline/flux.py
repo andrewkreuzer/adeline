@@ -18,7 +18,7 @@ async def flux(req: web.Request):
 
     if await check_token(token):
         data = await req.json()
-        await req.app['db'].insert(data)
+        await req.app["db"].insert(data)
         return web.Response(status=200, text="Success")
     else:
         raise web.HTTPForbidden(reason="Token doesn't exist")

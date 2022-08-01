@@ -7,12 +7,13 @@ async def message_hello(message, say):
                 "accessory": {
                     "type": "button",
                     "text": {"type": "plain_text", "text": "Click Me"},
-                    "action_id": "button_click"
-                }
+                    "action_id": "button_click",
+                },
             }
         ],
-        text=f"Hey there <@{message['user']}>!"
+        text=f"Hey there <@{message['user']}>!",
     )
+
 
 async def message_button_click(body, ack, say):
     await ack()
