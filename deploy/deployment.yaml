@@ -15,23 +15,22 @@ spec:
     spec:
       containers:
       - name: adeline
-        image: ghcr.io/andrewkreuzer/adeline:main-239ee8e0-2612519654 # {"$imagepolicy": "flux-system:adeline"}
-
+        image: ghcr.io/andrewkreuzer/adeline:main-bb3dec7b-2774959170 # {"$imagepolicy": "flux-system:adeline"}
         ports:
         - containerPort: 3000
         env:
-          - name: SLACK_APP_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: slack
-                key: app-token
-          - name: SLACK_BOT_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: slack
-                key: bot-token
-          - name: SLACK_SIGNING_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: slack
-                key: signing-secret
+        - name: SLACK_APP_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: slack
+              key: app-token
+        - name: SLACK_BOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: slack
+              key: bot-token
+        - name: SLACK_SIGNING_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: slack
+              key: signing-secret
