@@ -2,7 +2,8 @@ name: Build and Push
 
 on:
   push:
-    paths: ["adeline"]
+    paths: 
+      - "**.py"
     branches: ["main"]
 
 env:
