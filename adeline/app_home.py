@@ -6,7 +6,7 @@ async def create_event_blocks(context, next):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": f"# {event['name']}\n{event['kind']}",
+                    "text": f"# {event['name']}\n kind: {event['kind']} namespace: {event['namespace']}",
                 },
             }
         )
