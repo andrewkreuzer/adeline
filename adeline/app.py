@@ -1,5 +1,6 @@
 import os
 from typing import Optional
+import logging
 
 from aiohttp import web
 
@@ -32,6 +33,10 @@ class App:
             [web.get("/health", healthcheck), web.post("/flux", flux)]
         )
 
+        self.access_logger = logging.getLogger("access_logs")
+        self.access_logger.propagate = False
+        self.access_logger.addHandler(logging.FileHandler("/tmp/adeline/access_logs"))
+
     def events(self) -> None:
         self.slack_app.event(
             "app_home_opened",
@@ -51,7 +56,7 @@ class App:
 
         self.web_app.on_startup.append(self.start_socket_mode)
         self.web_app.on_shutdown.append(self.shutdown_socket_mode)
-        web.run_app(app=self.web_app, port=self.port)
+        web.run_app(app=self.web_app, port=self.port, access_log=self.access_logger)
 
     async def start_socket_mode(self, _web_app: web.Application):
         handler = AsyncSocketModeHandler(self.slack_app, os.environ["SLACK_APP_TOKEN"])

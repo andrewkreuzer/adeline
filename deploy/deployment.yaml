@@ -24,6 +24,12 @@ spec:
           periodSeconds: 10
         ports:
         - containerPort: 3000
+        volumeMounts:
+          - mountPath: /tmp/adeline/
+            name: logs
+        volumes:
+          - name: logs
+            emptyDir: {}
         env:
         - name: SLACK_APP_TOKEN
           valueFrom:
