@@ -2,14 +2,13 @@ import os
 from datetime import datetime
 import logging
 
-from pymongo import MongoClient, server_api
+import motor.motor_asyncio
 
 
 class Mongo:
     def __init__(self, inserts_off=False) -> None:
-        self._client = MongoClient(
-            os.environ.get("MONGODB_CONNECTION_STRING"),
-            server_api=server_api.ServerApi("1"),
+        self._client = motor.motor_asyncio.AsyncIOMotorClient(
+            os.environ.get("MONGODB_CONNECTION_STRING")
         )
         self._collection = self._client.test["slack"]
         self.inserts_off = inserts_off
@@ -28,7 +27,7 @@ class Mongo:
 
     async def fetch_deployment_info(self, context, next):
         events = []
-        for event in self._collection.find({ "message": { "$regex": "Deployment.*$" } }).sort("timestamp"):
+        async for event in self._collection.find({ "message": { "$regex": "Deployment.*$" } }).sort("timestamp", -1):
             events.append(
                 {
                     "kind": event["involvedObject"]["kind"],
