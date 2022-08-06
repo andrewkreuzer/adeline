@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: adeline
-        image: ghcr.io/andrewkreuzer/adeline:main-bb3dec7b-2774959170 # {"$imagepolicy": "flux-system:adeline"}
+        image: ghcr.io/andrewkreuzer/adeline:main-68727d23-2807204768 # {"$imagepolicy": "flux-system:adeline"}
         ports:
         - containerPort: 3000
         env:
