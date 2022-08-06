@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: adeline
-        image: ghcr.io/andrewkreuzer/adeline:main-a44d84ab-2807535295 # {"$imagepolicy": "flux-system:adeline"}
+        image: ghcr.io/andrewkreuzer/adeline:main-72e1afc4-2809298764 # {"$imagepolicy": "flux-system:adeline"}
         livenessProbe:
           httpGet:
             path: /health
@@ -23,10 +23,10 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 10
         ports:
-          - containerPort: 3000
+        - containerPort: 3000
         volumeMounts:
-          - mountPath: /tmp/adeline/
-            name: logs
+        - mountPath: /tmp/adeline/
+          name: logs
         env:
         - name: SLACK_APP_TOKEN
           valueFrom:
@@ -49,5 +49,5 @@ spec:
               name: mongodb-adeline
               key: connection-string
       volumes:
-        - name: logs
-          emptyDir: {}
+      - name: logs
+        emptyDir: {}
