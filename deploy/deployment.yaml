@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: adeline
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,6 +16,12 @@ spec:
       containers:
       - name: adeline
         image: ghcr.io/andrewkreuzer/adeline:main-68727d23-2807204768 # {"$imagepolicy": "flux-system:adeline"}
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 10
         ports:
         - containerPort: 3000
         env:
