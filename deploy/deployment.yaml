@@ -34,3 +34,8 @@ spec:
             secretKeyRef:
               name: slack
               key: signing-secret
+        - name: MONGODB_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-adeline
+              key: connection-string

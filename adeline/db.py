@@ -7,7 +7,7 @@ from pymongo import MongoClient, server_api
 class Mongo:
     def __init__(self) -> None:
         self._client = MongoClient(
-            os.environ.get("MONGO_DB_CONNECTION_STRING"),
+            os.environ.get("MONGODB_CONNECTION_STRING"),
             server_api=server_api.ServerApi("1"),
         )
         self._collection = self._client.test["slack"]
