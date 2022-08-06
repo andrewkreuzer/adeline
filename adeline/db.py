@@ -18,7 +18,7 @@ class Mongo:
             if self.inserts_off:
                 print(f"This would be inserted into the database: {item}")
             else:
-                item["timestamp"] = datetime.strptime(item["timestamp"], "%d-%m-%Y, %H:%M:%S"),
+                item["timestamp"] = datetime.strptime(item["timestamp"], "%Y-%m-%dT%H:%M:%SZ"),
                 self._collection.insert_one(item)
             return True
         except Exception as e:
