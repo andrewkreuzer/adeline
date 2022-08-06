@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: adeline
-        image: ghcr.io/andrewkreuzer/adeline:main-68727d23-2807204768 # {"$imagepolicy": "flux-system:adeline"}
+        image: ghcr.io/andrewkreuzer/adeline:main-a44d84ab-2807535295 # {"$imagepolicy": "flux-system:adeline"}
         livenessProbe:
           httpGet:
             path: /health
@@ -25,11 +25,11 @@ spec:
         ports:
         - containerPort: 3000
         volumeMounts:
-          - mountPath: /tmp/adeline/
-            name: logs
+        - mountPath: /tmp/adeline/
+          name: logs
         volumes:
-          - name: logs
-            emptyDir: {}
+        - name: logs
+          emptyDir: {}
         env:
         - name: SLACK_APP_TOKEN
           valueFrom:
