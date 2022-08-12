@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: adeline
-        image: ghcr.io/andrewkreuzer/adeline:main-c8a725b1-2810255788 # {"$imagepolicy": "flux-system:adeline"}
+        image: ghcr.io/andrewkreuzer/adeline:main-675a08b1-2810287527 # {"$imagepolicy": "flux-system:adeline"}
         livenessProbe:
           httpGet:
             path: /health
