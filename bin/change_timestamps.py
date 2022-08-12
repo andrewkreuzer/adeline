@@ -12,12 +12,12 @@ collection = client.test["slack"]
  
 bulk_ops = []
 for item in collection.find():
-    if isinstance(item["timestamp"], str):
+    if isinstance(item["timestamp"], list):
         bulk_ops.append(
             UpdateOne(
                 {"_id": item['_id']},
-                {"$set": {"timestamp": datetime.strptime(item["timestamp"], "%Y-%m-%dT%H:%M:%SZ"),}}
-            ) 
+                {"$set": {"timestamp": item["timestamp"][0]}}
+            )
         )
 result = collection.bulk_write(bulk_ops)
 pprint(result.bulk_api_result)

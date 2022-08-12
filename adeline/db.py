@@ -15,10 +15,10 @@ class Mongo:
 
     async def insert(self, item: dict) -> bool:
         try:
+            item["timestamp"] = datetime.strptime(item["timestamp"], "%Y-%m-%dT%H:%M:%SZ")
             if self.inserts_off:
                 print(f"This would be inserted into the database: {item}")
             else:
-                item["timestamp"] = datetime.strptime(item["timestamp"], "%Y-%m-%dT%H:%M:%SZ"),
                 self._collection.insert_one(item)
             return True
         except Exception as e:
